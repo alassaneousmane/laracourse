@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index')->name('home');
 
 Route::get('{n}', function($n)
     {
@@ -21,10 +19,6 @@ Route::get('{n}', function($n)
     }
     )->where('n', '[1-3]')->name('home');
 
-Route::get('article/{n}', function($n) {
-   return view('article')->withNumero($n);
-})->where('n', '[0-9]+')->name('article');
+Route::get('article/{n}', 'ArticleController@show')->name('article');
 
-Route::get('facture/{n}', function ($n) {
-   return view('facture')->withNumero($n);
-})->where('n', '[0-9]+')->name('facture');
+Route::get('facture/{n}', 'FactureController@show')->name('facture');
