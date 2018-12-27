@@ -24,9 +24,10 @@ Route::get('article/{n}', 'ArticleController@show')->name('article');
 Route::get('facture/{n}', 'FactureController@show')->name('facture');
 
 Route::get('user', 'UserController@getInfos');
-
 Route::post('user', 'UserController@postInfos');
 
 Route::get('contact', 'ContactController@getForm');
-
 Route::post('contact', 'ContactController@postForm');
+
+Route::get('photo', 'PhotoController@getForm');
+Route::post('photo', 'PhotoController@postForm');
