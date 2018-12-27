@@ -22,3 +22,8 @@ Route::get('{n}', function($n)
 Route::get('article/{n}', 'ArticleController@show')->name('article');
 
 Route::get('facture/{n}', 'FactureController@show')->name('facture');
+
+Route::get('users', 'UserController@getInfos');
+
+Route::post('users', 'UserController@postInfos');
+
