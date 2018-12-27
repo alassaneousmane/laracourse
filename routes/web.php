@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('{n}', function($n)
+    {
+        return 'Je suis la page '. $n. '!';
+    }
+    )->where('n', '[1-3]')->name('home');
