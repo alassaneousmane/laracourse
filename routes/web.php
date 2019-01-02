@@ -23,8 +23,8 @@ Route::get('article/{n}', 'ArticleController@show')->name('article');
 
 Route::get('facture/{n}', 'FactureController@show')->name('facture');
 
-Route::get('user', 'UserController@getInfos');
-Route::post('user', 'UserController@postInfos');
+// Route::get('user', 'UserController@getInfos');
+// Route::post('user', 'UserController@postInfos');
 
 Route::get('contact', 'ContactController@getForm');
 Route::post('contact', 'ContactController@postForm');
@@ -34,3 +34,5 @@ Route::post('photo', 'PhotoController@postForm');
 
 Route::get('email', 'EmailController@getForm');
 Route::post('email', ['uses' => 'EmailController@postForm', 'as' => 'storeEmail']);
+
+Route::resource('user', 'UserController');
