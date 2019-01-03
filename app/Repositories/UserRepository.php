@@ -4,14 +4,13 @@ namespace App\Repositories;
 
 use App\User;
 
-class UserRepository
+class UserRepository extends ResourceRepository
 {
 
-    protected $user;
 
     public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->model = $user;
     }
 
     private function save(User $user, Array $inputs)
@@ -25,12 +24,12 @@ class UserRepository
 
     public function getPaginate($n)
     {
-        return $this->user->paginate($n);
+        return $this->model->paginate($n);
     }
 
     public function store(Array $inputs)
     {
-        $user = new $this->user;
+        $user = new $this->model;
         $user->password = bcrypt($inputs['password']);
 
         $this->save($user, $inputs);
@@ -40,7 +39,7 @@ class UserRepository
 
     public function getById($id)
     {
-        return $this->user->findOrFail($id);
+        return $this->model->findOrFail($id);
     }
 
     public function update($id, Array $inputs)
