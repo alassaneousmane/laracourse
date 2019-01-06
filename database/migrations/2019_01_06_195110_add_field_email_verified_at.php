@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmailsTable extends Migration
+class AddFieldEmailVerifiedAt extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emails', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email', 100);            
+        Schema::table('users', function (Blueprint $table) {
+            $table
+                ->timestamp('email_verified_at')
+                ->nullable()
+                ->after('email');
         });
     }
 
@@ -26,6 +28,8 @@ class CreateEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emails');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('email_verified_at');
+        });
     }
 }

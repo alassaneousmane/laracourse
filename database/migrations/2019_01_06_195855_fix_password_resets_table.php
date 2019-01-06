@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmailsTable extends Migration
+class FixPasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emails', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email', 100);            
+        Schema::table('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
         });
     }
 
@@ -26,6 +26,9 @@ class CreateEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emails');
+        Schema::table('password_resets', function (Blueprint $table) {
+            $table->dropColumn('email');
+            $table->dropColumn('token');
+        });
     }
 }
