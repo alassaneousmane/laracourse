@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -22,7 +22,8 @@ class ContactController extends Controller
         {
             $message->to('test@test.fr')->subject('Contact');
         });
-
+        
         return view('confirm');
+        
     }
 }
